@@ -210,7 +210,8 @@ var neg = {
 
 };
    
-   var intense = {"so":true, "very":true, "highly":true, "extremely":true, "too":true};   
+   var intense = {"so":true, "very":true, "highly":true, "extremely":true, "too":true}; 
+   var negation = {"not":true};    
    	  
 	function quer(){
 	var x=0;
@@ -224,13 +225,26 @@ var neg = {
        for(i=0;i<words.length;i++)		  
        {
 		 
-		  if(words[i]==="not")
+		  if(words[i] in negation)
 		  {
-		  if(words[i+1] in pos)
-		  {n++;}
-		  else if(words[i+1] in neg)
-		  {p++;}
-		  }//negation
+		  
+		  
+		  var c=0;
+		  var d=0;
+		  var current_pos=i;
+				 do
+				  {  c++;
+				     d++;
+					 current_pos++;					 
+					if(words[current_pos] in pos && c<4 )
+					{n++; break }
+					else if(words[current_pos] in neg && d<4 )
+					{p++;break}  
+					}while(c<4||d<4 );
+				
+		  
+		  
+		  }//negation over
 		  else if(words[i] in intense)
 		  {
 		  if(words[i+1] in pos)
@@ -238,7 +252,7 @@ var neg = {
 		  if(words[i+1] in neg)
 		  {n=n+2;}
 		  }//intense
-		  if(words[i] in pos)
+		  else if(words[i] in pos)
 		  {p++;}
 		  else if(words[i] in neg)
 		  {n++;}

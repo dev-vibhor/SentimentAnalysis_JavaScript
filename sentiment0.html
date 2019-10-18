@@ -209,6 +209,7 @@ var neg = {
 };
    
    var intense = {"so":true, "very":true, "highly":true, "extremely":true, "too":true};   
+   var negation = {"not":true};  
 	function quer(){
 	var x=0;
 	var r = confirm("write a query for solution");
@@ -219,25 +220,39 @@ var neg = {
        var ct = text.toString();  
        var words = ct.split(' ')	;	   
        for(i=0;i<words.length;i++)		  
-       {//alert(words[i]);
-	   if(words[i] in pos)
-	   {p++;}
-		  else if(words[i] in neg)
-		  {n++;}
-		  else if(words[i]==="not")
+       {
+		 
+		  if(words[i] in negation)
 		  {
-		  if(words[i+1] in pos)
-		  {n++;}
-		  else if(words[i+1] in neg)
-		  {p++;}
-		  }
+		  
+		  
+		  var c=0;
+		  var d=0;
+		  var current_pos=i;
+				 do
+				  {  c++;
+				     d++;
+					 current_pos++;					 
+					if(words[current_pos] in pos && c<4 )
+					{n++; break }
+					else if(words[current_pos] in neg && d<4 )
+					{p++;break}  
+					}while(c<4||d<4 );
+				
+		  
+		  
+		  }//negation over
 		  else if(words[i] in intense)
 		  {
 		  if(words[i+1] in pos)
-		  {p=p+2-1;}
+		  {p=p+2;}
 		  if(words[i+1] in neg)
-		  {n=n+2-1;}
-		  }
+		  {n=n+2;}
+		  }//intense
+		  else if(words[i] in pos)
+		  {p++;}
+		  else if(words[i] in neg)
+		  {n++;}
 		  }//for over
 		 // displayContents(text);
 		  alert("positive%="+(p/(p+n))*100);
