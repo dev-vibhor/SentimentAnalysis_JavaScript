@@ -119,7 +119,7 @@ var neg = {
 "guilty":true,"haggard":true,"hard":true,
 "hard-hearted":true,"harmful":true,
 "hideous":true,"homely":true,"horrendous":true,"horrible":true,
-"hostile":true,"hurt":true,"hurtful":true,"icky":true,"ill":true,
+"hostile":true,"hurt":true,"hurtful":true,"icky":true,"ill":true,"worst":true,
 "immature":true,"imperfect":true,"impossible":true,"inane":true,
 "inelegant":true,"infernal":true,"injure":true,"injurious":true,
 "insidious":true,"insipid":true,"junk":true,"junky":true,"lose":true,"lousy":true,
@@ -171,13 +171,14 @@ var neg = {
 };
    
    var intense = {"so":true, "very":true, "highly":true, "extremely":true, "too":true};   
-   var negation = {"not":true}; 
+   var negation = {"not":true ,  "neither":true , "none":true}; 
     if (f) {
       var r = new FileReader();
       r.onload = function(e) { 
           var contents = e.target.result;             
-          var ct = r.result;
+          var ct = r.result.toLowerCase();
           var words = ct.split(' ');     
+
      for(i=0;i<words.length;i++)		  
        {
 		 
@@ -237,7 +238,7 @@ var neg = {
 		if(c>50)
 		{
 		var el = document.getElementById('res'); 
-        el.innerHTML = txt+" CATEGORY:POSITIVE SENTIMENT"; //display output in DOM
+        el.innerHTML ="Comments :"+ txt + "<br>" +" CATEGORY :POSITIVE SENTIMENT"; //display output in DOM
 		el.style.color = 'green';//positive
 		}
 		else if(c<50)
@@ -323,23 +324,32 @@ var neg = {
 	
 	}
 
+function refreshPage(){
+    window.location.reload();
+} 
+
   document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
 </script>
  <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
  <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
 </head>
 <body  background="senti.jpg" >
+<div><br><button onClick="refreshPage()" type="submit">Refresh Button</button></div>
+
+<center><h1>Welcome to Text Analyser</h1></center>
+<center><h3>Created by Vibhor Singh</h3></center>
+<center><h2><button onclick="window.location.href = 'https://vibhorweb.000webhostapp.com/';">WEBSITE</button></h2></center>
 <h3>Contents of the Text file:</h3>
 <h4><b>NOTE :</b> save the text in a text file and choose the file from the directory to display sentiment score</h4>
 		<div id="res">
             OUTPUT 
         </div>
-		<p>CONTENT OF THE TEXT FILE</p>
+		<p>Content Of The Text file attached </p>
         <div id="main">
             ...
         </div>
 		<div id="container" style="width: 100%; height: 100%">Sentiment Pie Chart</div>
-    
+        
 		
 </body>
 </html>
