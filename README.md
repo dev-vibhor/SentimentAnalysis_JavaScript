@@ -1,6 +1,6 @@
 # SentimentInJS
 Sentiment analysis algorithm using java script
 
-https://sentimentanalyservibhor.000webhostapp.com/  (hosted app)
+https://sentimentanalyservibhor.000webhostapp.com/  (hosted app link)
 
-using simple data structure using java script to build a analysis algo
+using simple data structure in Java Script alone I was able to create this web app
