@@ -1,0 +1,71 @@
+<html>  
+<head>
+<input type="file" id="fileinput" />
+<script type="text/javascript">
+function readSingleFile(evt) {
+var f = evt.target.files[0];
+if (f) {
+//alert(" file1");
+      var r = new FileReader();
+      r.onload = function(e) { 
+          var contents = e.target.result;             
+          var ct = r.result.toLowerCase();
+			var words = ct.split(' ');
+			//alert("file2");
+			var feature = prompt('Enter text here');
+			//alert(inputVal);
+			var arr1=[];
+		for(i=0;i<words.length;i++)		  
+       {
+		   if(words[i]==feature)
+		  { if(words[i+1]!=' ' && words[i+2]!=' '){
+	       arr1.push(words[i]+' '+words[i+1]+' '+words[i+2]);}
+		   if(words[i-2]!=' ' && words[i-1]!=' '){
+	       arr1.push(words[i-2]+' '+words[i-1]+' '+words[i]);}
+		  }
+	   }
+	   len = arr1.length;
+	   
+
+   if(arr1.length>0)
+   {
+
+  for ( n = 0; n < len; n++) {
+  
+          document.getElementById("demo").innerHTML += (n+1).toString()+')'+' '+arr1[n]+"<br>";
+
+     
+      }
+	}
+else
+{
+alert("No feature present as per your input");
+}	
+	
+  
+			}
+			r.readAsText(f);
+			}
+	 		
+ else { 
+      alert("Failed to load file");
+    }
+	
+			
+			 
+	   //document.getElementById("demo").innerHTML = arr1[0];
+}
+document.getElementById('fileinput').addEventListener('change', readSingleFile, false);	
+</script>  
+</head>  
+<body>  
+<center><h1>Welcome to Feature extraction</h1>  
+<p>1) Load the file</p> 
+<p>2) Enter the feature that needs to extracted in promt window</p> </center>
+<div id="res">
+  Output         
+</div>
+<p>Extracted feature</p>
+<p id="demo">....<br></p>
+</body>  
+</html>  
